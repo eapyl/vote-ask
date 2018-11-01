@@ -19,7 +19,6 @@ namespace voute_ask
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseUrls("*")
                 .UseStartup<Startup>();
     }
 }
