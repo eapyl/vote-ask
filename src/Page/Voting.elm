@@ -142,21 +142,18 @@ decodeVoting model x =
 view: Model -> List (Html Msg)
 view model =
   let
-
     form =
-      showUserWidget model
-      ++
       [ div [ class "form-row" ]
-        [ div [ class "col" ] [ input [ readonly True, class "form-control-plaintext", value model.question ] [] ]
+        [ div [ class "col" ] [ p [ class "h1"] [ text model.question ] ]
         ]
       ]
+      ++
+      showUserWidget model
       ++
       ( List.concat <| List.map (showVariant model) model.variants )
       ++
       showClose model
   in
-    [ h1 [] [ text ("Vote # " ++ model.id) ] ]
-    ++
     showRole model
     ++
     [ Html.form [] form ]

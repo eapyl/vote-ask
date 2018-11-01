@@ -7388,38 +7388,39 @@ var author$project$Page$Voting$showVariant = F2(
 	});
 var author$project$Page$Voting$view = function (model) {
 	var form = _Utils_ap(
-		author$project$Page$Voting$showUserWidget(model),
+		_List_fromArray(
+			[
+				A2(
+				elm$html$Html$div,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('form-row')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('col')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$p,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('h1')
+									]),
+								_List_fromArray(
+									[
+										elm$html$Html$text(model.D)
+									]))
+							]))
+					]))
+			]),
 		_Utils_ap(
-			_List_fromArray(
-				[
-					A2(
-					elm$html$Html$div,
-					_List_fromArray(
-						[
-							elm$html$Html$Attributes$class('form-row')
-						]),
-					_List_fromArray(
-						[
-							A2(
-							elm$html$Html$div,
-							_List_fromArray(
-								[
-									elm$html$Html$Attributes$class('col')
-								]),
-							_List_fromArray(
-								[
-									A2(
-									elm$html$Html$input,
-									_List_fromArray(
-										[
-											elm$html$Html$Attributes$readonly(true),
-											elm$html$Html$Attributes$class('form-control-plaintext'),
-											elm$html$Html$Attributes$value(model.D)
-										]),
-									_List_Nil)
-								]))
-						]))
-				]),
+			author$project$Page$Voting$showUserWidget(model),
 			_Utils_ap(
 				elm$core$List$concat(
 					A2(
@@ -7428,22 +7429,11 @@ var author$project$Page$Voting$view = function (model) {
 						model.g)),
 				author$project$Page$Voting$showClose(model))));
 	return _Utils_ap(
+		author$project$Page$Voting$showRole(model),
 		_List_fromArray(
 			[
-				A2(
-				elm$html$Html$h1,
-				_List_Nil,
-				_List_fromArray(
-					[
-						elm$html$Html$text('Vote # ' + model.aM)
-					]))
-			]),
-		_Utils_ap(
-			author$project$Page$Voting$showRole(model),
-			_List_fromArray(
-				[
-					A2(elm$html$Html$form, _List_Nil, form)
-				])));
+				A2(elm$html$Html$form, _List_Nil, form)
+			]));
 };
 var author$project$Main$getBody = function (model) {
 	var nonStaticBody = function () {
