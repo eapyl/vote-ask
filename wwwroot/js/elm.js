@@ -6715,7 +6715,7 @@ var author$project$Main$footerElement = _List_fromArray(
 						_List_Nil,
 						_List_fromArray(
 							[
-								elm$html$Html$text('v.0.0.1')
+								elm$html$Html$text('v.0.0.2')
 							]))
 					]))
 			]))

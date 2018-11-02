@@ -207,6 +207,6 @@ footerElement =
   [ div [ class "alert alert-warning"] [ text "Server is not saving votings and doesn't have persistant storage. All results can be lost in any time. Save results by yourself!"]
   , footer [ class "float-right" ]
     [ p [] [ text "Copyright Yauhen Pyl"]
-    , a [ class "float-right", href "https://github.com/eapyl/vote-ask" ] [ small [] [ text "v.0.0.1" ] ]
+    , a [ class "float-right", href "https://github.com/eapyl/vote-ask" ] [ small [] [ text "v.0.0.2" ] ]
     ]
   ]
