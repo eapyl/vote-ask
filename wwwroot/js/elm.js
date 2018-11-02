@@ -6653,6 +6653,7 @@ var author$project$Main$update = F2(
 		}
 		return _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
 	});
+var elm$html$Html$a = _VirtualDom_node('a');
 var elm$html$Html$div = _VirtualDom_node('div');
 var elm$html$Html$footer = _VirtualDom_node('footer');
 var elm$html$Html$p = _VirtualDom_node('p');
@@ -6667,6 +6668,12 @@ var elm$html$Html$Attributes$stringProperty = F2(
 			elm$json$Json$Encode$string(string));
 	});
 var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
+var elm$html$Html$Attributes$href = function (url) {
+	return A2(
+		elm$html$Html$Attributes$stringProperty,
+		'href',
+		_VirtualDom_noJavaScriptUri(url));
+};
 var author$project$Main$footerElement = _List_fromArray(
 	[
 		A2(
@@ -6695,10 +6702,11 @@ var author$project$Main$footerElement = _List_fromArray(
 						elm$html$Html$text('Copyright Yauhen Pyl')
 					])),
 				A2(
-				elm$html$Html$p,
+				elm$html$Html$a,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class('float-right')
+						elm$html$Html$Attributes$class('float-right'),
+						elm$html$Html$Attributes$href('https://github.com/eapyl/vote-ask')
 					]),
 				_List_fromArray(
 					[
@@ -6712,15 +6720,8 @@ var author$project$Main$footerElement = _List_fromArray(
 					]))
 			]))
 	]);
-var elm$html$Html$a = _VirtualDom_node('a');
 var elm$html$Html$li = _VirtualDom_node('li');
 var elm$html$Html$ul = _VirtualDom_node('ul');
-var elm$html$Html$Attributes$href = function (url) {
-	return A2(
-		elm$html$Html$Attributes$stringProperty,
-		'href',
-		_VirtualDom_noJavaScriptUri(url));
-};
 var author$project$Main$mainMenu = function (model) {
 	var mainPageClass = function () {
 		if (model.$ === 2) {
