@@ -770,11 +770,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.Z.C === region.af.C)
+	if (region._.D === region.ag.D)
 	{
-		return 'on line ' + region.Z.C;
+		return 'on line ' + region._.D;
 	}
-	return 'on lines ' + region.Z.C + ' through ' + region.af.C;
+	return 'on lines ' + region._.D + ' through ' + region.ag.D;
 }
 
 
@@ -2660,9 +2660,9 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		k: func(record.k),
-		_: record._,
-		Y: record.Y
+		l: func(record.l),
+		aa: record.aa,
+		Z: record.Z
 	}
 });
 
@@ -2930,11 +2930,11 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.k;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value._;
+		var message = !tag ? value : tag < 3 ? value.a : value.l;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.aa;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
-			(tag == 2 ? value.b : tag == 3 && value.Y) && event.preventDefault(),
+			(tag == 2 ? value.b : tag == 3 && value.Z) && event.preventDefault(),
 			eventNode
 		);
 		var tagger;
@@ -3924,7 +3924,7 @@ var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, deb
 		impl.aW,
 		impl.aU,
 		function(sendToApp, initialModel) {
-			var divertHrefToApp = impl.F && impl.F(sendToApp)
+			var divertHrefToApp = impl.G && impl.G(sendToApp)
 			var view = impl.aY;
 			var title = _VirtualDom_doc.title;
 			var bodyNode = _VirtualDom_doc.body;
@@ -3994,7 +3994,7 @@ function _Browser_application(impl)
 	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
 
 	return _Browser_document({
-		F: function(sendToApp)
+		G: function(sendToApp)
 		{
 			key.a = sendToApp;
 			_Browser_window.addEventListener('popstate', key);
@@ -4010,9 +4010,9 @@ function _Browser_application(impl)
 					var next = elm$url$Url$fromString(href).a;
 					sendToApp(onUrlRequest(
 						(next
-							&& curr.ar === next.ar
-							&& curr.ai === next.ai
-							&& curr.ao.a === next.ao.a
+							&& curr.as === next.as
+							&& curr.aj === next.aj
+							&& curr.ap.a === next.ap.a
 						)
 							? elm$browser$Browser$Internal(next)
 							: elm$browser$Browser$External(href)
@@ -4092,17 +4092,17 @@ var _Browser_decodeEvent = F2(function(decoder, event)
 function _Browser_visibilityInfo()
 {
 	return (typeof _VirtualDom_doc.hidden !== 'undefined')
-		? { aL: 'hidden', A: 'visibilitychange' }
+		? { aL: 'hidden', B: 'visibilitychange' }
 		:
 	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
-		? { aL: 'mozHidden', A: 'mozvisibilitychange' }
+		? { aL: 'mozHidden', B: 'mozvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.msHidden !== 'undefined')
-		? { aL: 'msHidden', A: 'msvisibilitychange' }
+		? { aL: 'msHidden', B: 'msvisibilitychange' }
 		:
 	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
-		? { aL: 'webkitHidden', A: 'webkitvisibilitychange' }
-		: { aL: 'hidden', A: 'visibilitychange' };
+		? { aL: 'webkitHidden', B: 'webkitvisibilitychange' }
+		: { aL: 'hidden', B: 'visibilitychange' };
 }
 
 
@@ -4183,12 +4183,12 @@ var _Browser_call = F2(function(functionName, id)
 function _Browser_getViewport()
 {
 	return {
-		av: _Browser_getScene(),
+		aw: _Browser_getScene(),
 		aA: {
-			R: _Browser_window.pageXOffset,
-			S: _Browser_window.pageYOffset,
-			y: _Browser_doc.documentElement.clientWidth,
-			t: _Browser_doc.documentElement.clientHeight
+			S: _Browser_window.pageXOffset,
+			T: _Browser_window.pageYOffset,
+			z: _Browser_doc.documentElement.clientWidth,
+			u: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4198,8 +4198,8 @@ function _Browser_getScene()
 	var body = _Browser_doc.body;
 	var elem = _Browser_doc.documentElement;
 	return {
-		y: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		t: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		z: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		u: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4222,15 +4222,15 @@ function _Browser_getViewportOf(id)
 	return _Browser_withNode(id, function(node)
 	{
 		return {
-			av: {
-				y: node.scrollWidth,
-				t: node.scrollHeight
+			aw: {
+				z: node.scrollWidth,
+				u: node.scrollHeight
 			},
 			aA: {
-				R: node.scrollLeft,
-				S: node.scrollTop,
-				y: node.clientWidth,
-				t: node.clientHeight
+				S: node.scrollLeft,
+				T: node.scrollTop,
+				z: node.clientWidth,
+				u: node.clientHeight
 			}
 		};
 	});
@@ -4260,18 +4260,18 @@ function _Browser_getElement(id)
 		var x = _Browser_window.pageXOffset;
 		var y = _Browser_window.pageYOffset;
 		return {
-			av: _Browser_getScene(),
+			aw: _Browser_getScene(),
 			aA: {
-				R: x,
-				S: y,
-				y: _Browser_doc.documentElement.clientWidth,
-				t: _Browser_doc.documentElement.clientHeight
+				S: x,
+				T: y,
+				z: _Browser_doc.documentElement.clientWidth,
+				u: _Browser_doc.documentElement.clientHeight
 			},
 			aI: {
-				R: x + rect.left,
-				S: y + rect.top,
-				y: rect.width,
-				t: rect.height
+				S: x + rect.left,
+				T: y + rect.top,
+				z: rect.width,
+				u: rect.height
 			}
 		};
 	});
@@ -4337,13 +4337,13 @@ var author$project$Main$Voting = function (a) {
 	return {$: 3, a: a};
 };
 var author$project$Page$Home$toSession = function (model) {
-	return model.E;
+	return model.F;
 };
 var author$project$Page$NewVoting$toSession = function (model) {
-	return model.E;
+	return model.F;
 };
 var author$project$Page$Voting$toSession = function (model) {
-	return model.E;
+	return model.F;
 };
 var author$project$Main$toSession = function (page) {
 	switch (page.$) {
@@ -4850,7 +4850,7 @@ var author$project$Main$updateWith = F4(
 	});
 var author$project$Page$Home$Model = F3(
 	function (session, votingId, info) {
-		return {O: info, E: session, Q: votingId};
+		return {P: info, F: session, R: votingId};
 	});
 var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
@@ -4861,11 +4861,11 @@ var author$project$Page$Home$init = function (session) {
 };
 var author$project$Page$NewVoting$Model = F4(
 	function (session, question, variants, info) {
-		return {O: info, D: question, E: session, g: variants};
+		return {P: info, E: question, F: session, g: variants};
 	});
 var author$project$Page$NewVoting$Variant = F2(
 	function (id, text) {
-		return {aM: id, H: text};
+		return {aM: id, I: text};
 	});
 var author$project$Page$NewVoting$init = function (session) {
 	return _Utils_Tuple2(
@@ -4886,14 +4886,14 @@ var elm$core$Basics$identity = function (x) {
 };
 var author$project$Api$toJs = _Platform_outgoingPort('toJs', elm$core$Basics$identity);
 var author$project$Component$User$Model = function (name) {
-	return {P: name};
+	return {Q: name};
 };
 var author$project$Component$User$init = function (name) {
 	return author$project$Component$User$Model(name);
 };
 var author$project$Page$Voting$Model = F7(
 	function (session, id, question, variants, answers, user, isClosed) {
-		return {T: answers, aM: id, B: isClosed, D: question, E: session, n: user, g: variants};
+		return {U: answers, aM: id, C: isClosed, E: question, F: session, o: user, g: variants};
 	});
 var elm$json$Json$Encode$object = function (pairs) {
 	return _Json_wrap(
@@ -5040,15 +5040,15 @@ var elm$core$List$map = F2(
 var elm$url$Url$Parser$Parser = elm$core$Basics$identity;
 var elm$url$Url$Parser$State = F5(
 	function (visited, unvisited, params, frag, value) {
-		return {o: frag, q: params, m: unvisited, ay: value, r: visited};
+		return {p: frag, r: params, n: unvisited, j: value, s: visited};
 	});
 var elm$url$Url$Parser$mapState = F2(
 	function (func, _n0) {
-		var visited = _n0.r;
-		var unvisited = _n0.m;
-		var params = _n0.q;
-		var frag = _n0.o;
-		var value = _n0.ay;
+		var visited = _n0.s;
+		var unvisited = _n0.n;
+		var params = _n0.r;
+		var frag = _n0.p;
+		var value = _n0.j;
 		return A5(
 			elm$url$Url$Parser$State,
 			visited,
@@ -5061,11 +5061,11 @@ var elm$url$Url$Parser$map = F2(
 	function (subValue, _n0) {
 		var parseArg = _n0;
 		return function (_n1) {
-			var visited = _n1.r;
-			var unvisited = _n1.m;
-			var params = _n1.q;
-			var frag = _n1.o;
-			var value = _n1.ay;
+			var visited = _n1.s;
+			var unvisited = _n1.n;
+			var params = _n1.r;
+			var frag = _n1.p;
+			var value = _n1.j;
 			return A2(
 				elm$core$List$map,
 				elm$url$Url$Parser$mapState(value),
@@ -5102,11 +5102,11 @@ var elm$url$Url$Parser$oneOf = function (parsers) {
 };
 var elm$url$Url$Parser$s = function (str) {
 	return function (_n0) {
-		var visited = _n0.r;
-		var unvisited = _n0.m;
-		var params = _n0.q;
-		var frag = _n0.o;
-		var value = _n0.ay;
+		var visited = _n0.s;
+		var unvisited = _n0.n;
+		var params = _n0.r;
+		var frag = _n0.p;
+		var value = _n0.j;
 		if (!unvisited.b) {
 			return _List_Nil;
 		} else {
@@ -5139,11 +5139,11 @@ var elm$url$Url$Parser$slash = F2(
 var elm$url$Url$Parser$custom = F2(
 	function (tipe, stringToSomething) {
 		return function (_n0) {
-			var visited = _n0.r;
-			var unvisited = _n0.m;
-			var params = _n0.q;
-			var frag = _n0.o;
-			var value = _n0.ay;
+			var visited = _n0.s;
+			var unvisited = _n0.n;
+			var params = _n0.r;
+			var frag = _n0.p;
+			var value = _n0.j;
 			if (!unvisited.b) {
 				return _List_Nil;
 			} else {
@@ -5197,12 +5197,12 @@ var elm$url$Url$Parser$getFirstMatch = function (states) {
 		} else {
 			var state = states.a;
 			var rest = states.b;
-			var _n1 = state.m;
+			var _n1 = state.n;
 			if (!_n1.b) {
-				return elm$core$Maybe$Just(state.ay);
+				return elm$core$Maybe$Just(state.j);
 			} else {
 				if ((_n1.a === '') && (!_n1.b.b)) {
-					return elm$core$Maybe$Just(state.ay);
+					return elm$core$Maybe$Just(state.j);
 				} else {
 					var $temp$states = rest;
 					states = $temp$states;
@@ -5814,9 +5814,9 @@ var elm$url$Url$Parser$parse = F2(
 				A5(
 					elm$url$Url$Parser$State,
 					_List_Nil,
-					elm$url$Url$Parser$preparePath(url.am),
-					elm$url$Url$Parser$prepareQuery(url.as),
-					url.ah,
+					elm$url$Url$Parser$preparePath(url.an),
+					elm$url$Url$Parser$prepareQuery(url.at),
+					url.ai,
 					elm$core$Basics$identity)));
 	});
 var author$project$Route$fromUrl = function (url) {
@@ -5825,7 +5825,7 @@ var author$project$Route$fromUrl = function (url) {
 var author$project$Session$Guest = 0;
 var author$project$Session$Model = F2(
 	function (key, user) {
-		return {aj: key, n: user};
+		return {ak: key, o: user};
 	});
 var author$project$Session$init = function (key) {
 	return A2(author$project$Session$Model, key, 0);
@@ -5879,11 +5879,11 @@ var author$project$Page$NewVoting$subscriptions = function (model) {
 };
 var author$project$Page$Voting$UserAnswer = F2(
 	function (variantId, user) {
-		return {n: user, az: variantId};
+		return {o: user, az: variantId};
 	});
 var author$project$Page$Voting$Variant = F2(
 	function (id, text) {
-		return {aM: id, H: text};
+		return {aM: id, I: text};
 	});
 var author$project$Page$Voting$VotingLoaded = function (a) {
 	return {$: 1, a: a};
@@ -5909,7 +5909,7 @@ var author$project$Page$Voting$decodeVoting = F2(
 		var votingDecoder = A8(
 			elm$json$Json$Decode$map7,
 			author$project$Page$Voting$Model,
-			elm$json$Json$Decode$succeed(model.E),
+			elm$json$Json$Decode$succeed(model.F),
 			A2(elm$json$Json$Decode$field, 'Id', elm$json$Json$Decode$string),
 			A2(elm$json$Json$Decode$field, 'Question', elm$json$Json$Decode$string),
 			A2(
@@ -5920,7 +5920,7 @@ var author$project$Page$Voting$decodeVoting = F2(
 				elm$json$Json$Decode$field,
 				'Answers',
 				elm$json$Json$Decode$list(answersDecoder)),
-			elm$json$Json$Decode$succeed(model.n),
+			elm$json$Json$Decode$succeed(model.o),
 			A2(elm$json$Json$Decode$field, 'IsClosed', elm$json$Json$Decode$bool));
 		var result = A2(elm$json$Json$Decode$decodeValue, votingDecoder, x);
 		if (!result.$) {
@@ -6109,7 +6109,7 @@ var elm$core$String$contains = _String_contains;
 var elm$core$String$toInt = _String_toInt;
 var elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {ah: fragment, ai: host, am: path, ao: port_, ar: protocol, as: query};
+		return {ai: fragment, aj: host, an: path, ap: port_, as: protocol, at: query};
 	});
 var elm$url$Url$chompBeforePath = F5(
 	function (protocol, path, params, frag, str) {
@@ -6222,13 +6222,13 @@ var author$project$Route$goToUrl = F2(
 			author$project$Route$routeToString(route));
 	});
 var author$project$Session$navKey = function (session) {
-	return session.aj;
+	return session.ak;
 };
 var author$project$Session$Voter = 2;
 var author$project$Session$toVoter = function (session) {
 	return _Utils_update(
 		session,
-		{n: 2});
+		{o: 2});
 };
 var author$project$Page$Home$update = F2(
 	function (msg, model) {
@@ -6238,7 +6238,7 @@ var author$project$Page$Home$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{Q: value}),
+						{R: value}),
 					elm$core$Platform$Cmd$none);
 			case 1:
 				return _Utils_Tuple2(
@@ -6252,7 +6252,7 @@ var author$project$Page$Home$update = F2(
 									elm$json$Json$Encode$string('CheckVoting')),
 									_Utils_Tuple2(
 									'votingId',
-									elm$json$Json$Encode$string(model.Q))
+									elm$json$Json$Encode$string(model.R))
 								]))));
 			default:
 				var result = msg.a;
@@ -6262,18 +6262,18 @@ var author$project$Page$Home$update = F2(
 						_Utils_update(
 							model,
 							{
-								O: '',
-								E: author$project$Session$toVoter(model.E)
+								P: '',
+								F: author$project$Session$toVoter(model.F)
 							}),
 						A2(
 							author$project$Route$goToUrl,
-							author$project$Session$navKey(model.E),
+							author$project$Session$navKey(model.F),
 							author$project$Route$Voting(id)));
 				} else {
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{O: 'Can\'t find voting.'}),
+							{P: 'Can\'t find voting.'}),
 						elm$core$Platform$Cmd$none);
 				}
 		}
@@ -6315,7 +6315,7 @@ var author$project$Page$NewVoting$updateVariant = F3(
 	function (changedVariant, newText, storedVariant) {
 		return _Utils_eq(changedVariant.aM, storedVariant.aM) ? _Utils_update(
 			storedVariant,
-			{H: newText}) : storedVariant;
+			{I: newText}) : storedVariant;
 	});
 var author$project$Page$NewVoting$changeVariant = F3(
 	function (v, updatedText, model) {
@@ -6328,7 +6328,7 @@ var author$project$Session$Creator = 1;
 var author$project$Session$toCreator = function (session) {
 	return _Utils_update(
 		session,
-		{n: 1});
+		{o: 1});
 };
 var elm$core$Basics$neq = _Utils_notEqual;
 var elm$core$List$filter = F2(
@@ -6392,7 +6392,7 @@ var author$project$Page$NewVoting$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{D: questionText}),
+						{E: questionText}),
 					elm$core$Platform$Cmd$none);
 			case 4:
 				return _Utils_Tuple2(
@@ -6406,7 +6406,7 @@ var author$project$Page$NewVoting$update = F2(
 									elm$json$Json$Encode$string('SubmitVoting')),
 									_Utils_Tuple2(
 									'question',
-									elm$json$Json$Encode$string(model.D)),
+									elm$json$Json$Encode$string(model.E)),
 									_Utils_Tuple2(
 									'variants',
 									A2(
@@ -6420,7 +6420,7 @@ var author$project$Page$NewVoting$update = F2(
 														elm$json$Json$Encode$int(x.aM)),
 														_Utils_Tuple2(
 														'text',
-														elm$json$Json$Encode$string(x.H))
+														elm$json$Json$Encode$string(x.I))
 													]));
 										},
 										model.g))
@@ -6433,17 +6433,17 @@ var author$project$Page$NewVoting$update = F2(
 						_Utils_update(
 							model,
 							{
-								E: author$project$Session$toCreator(model.E)
+								F: author$project$Session$toCreator(model.F)
 							}),
 						A2(
 							author$project$Route$goToUrl,
-							author$project$Session$navKey(model.E),
+							author$project$Session$navKey(model.F),
 							author$project$Route$Voting(newId)));
 				} else {
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
-							{O: 'Can\'t create voting.'}),
+							{P: 'Can\'t create voting.'}),
 						elm$core$Platform$Cmd$none);
 				}
 		}
@@ -6454,7 +6454,7 @@ var author$project$Component$User$update = F2(
 		return _Utils_Tuple2(
 			_Utils_update(
 				model,
-				{P: name}),
+				{Q: name}),
 			elm$core$Platform$Cmd$none);
 	});
 var author$project$Page$Voting$GotToUserMsg = function (a) {
@@ -6478,11 +6478,11 @@ var author$project$Page$Voting$update = F2(
 					function (subMod) {
 						return _Utils_update(
 							model,
-							{n: subMod});
+							{o: subMod});
 					},
 					author$project$Page$Voting$GotToUserMsg,
 					model,
-					A2(author$project$Component$User$update, subMsg, model.n));
+					A2(author$project$Component$User$update, subMsg, model.o));
 			case 1:
 				var result = msg.a;
 				if (!result.$) {
@@ -6493,7 +6493,7 @@ var author$project$Page$Voting$update = F2(
 						model,
 						A2(
 							author$project$Route$goToUrl,
-							author$project$Session$navKey(model.E),
+							author$project$Session$navKey(model.F),
 							author$project$Route$Home));
 				}
 			case 2:
@@ -6515,7 +6515,7 @@ var author$project$Page$Voting$update = F2(
 									elm$json$Json$Encode$int(variant.aM)),
 									_Utils_Tuple2(
 									'user',
-									elm$json$Json$Encode$string(model.n.P))
+									elm$json$Json$Encode$string(model.o.Q))
 								]))));
 			default:
 				return _Utils_Tuple2(
@@ -6556,7 +6556,7 @@ var elm$url$Url$addPrefixed = F3(
 	});
 var elm$url$Url$toString = function (url) {
 	var http = function () {
-		var _n0 = url.ar;
+		var _n0 = url.as;
 		if (!_n0) {
 			return 'http://';
 		} else {
@@ -6566,17 +6566,17 @@ var elm$url$Url$toString = function (url) {
 	return A3(
 		elm$url$Url$addPrefixed,
 		'#',
-		url.ah,
+		url.ai,
 		A3(
 			elm$url$Url$addPrefixed,
 			'?',
-			url.as,
+			url.at,
 			_Utils_ap(
 				A2(
 					elm$url$Url$addPort,
-					url.ao,
-					_Utils_ap(http, url.ai)),
-				url.am)));
+					url.ap,
+					_Utils_ap(http, url.aj)),
+				url.an)));
 };
 var author$project$Main$update = F2(
 	function (msg, model) {
@@ -6921,7 +6921,7 @@ var author$project$Page$Home$view = function (model) {
 													_List_fromArray(
 														[
 															elm$html$Html$Attributes$class('form-control'),
-															elm$html$Html$Attributes$value(model.Q),
+															elm$html$Html$Attributes$value(model.R),
 															elm$html$Html$Events$onInput(author$project$Page$Home$ChangeSeachVotingValue)
 														]),
 													_List_Nil),
@@ -6933,7 +6933,7 @@ var author$project$Page$Home$view = function (model) {
 														]),
 													_List_fromArray(
 														[
-															elm$html$Html$text(model.O)
+															elm$html$Html$text(model.P)
 														]))
 												])),
 											A2(
@@ -6992,10 +6992,10 @@ var elm$core$List$all = F2(
 			list);
 	});
 var author$project$Page$NewVoting$showCreateVoteButton = function (model) {
-	return ((model.D !== '') && ((elm$core$List$length(model.g) > 1) && A2(
+	return ((model.E !== '') && ((elm$core$List$length(model.g) > 1) && A2(
 		elm$core$List$all,
 		function (x) {
-			return x.H !== '';
+			return x.I !== '';
 		},
 		model.g))) ? _List_fromArray(
 		[
@@ -7045,7 +7045,7 @@ var author$project$Page$NewVoting$viewVariant = F3(
 									elm$html$Html$Attributes$class('form-control'),
 									elm$html$Html$Attributes$placeholder('Variant ' + strIndex),
 									elm$html$Html$Attributes$type_('text'),
-									elm$html$Html$Attributes$value(v.H),
+									elm$html$Html$Attributes$value(v.I),
 									elm$html$Html$Events$onInput(
 									author$project$Page$NewVoting$ChangeVariant(v))
 								]),
@@ -7102,7 +7102,7 @@ var author$project$Page$NewVoting$view = function (model) {
 										elm$html$Html$Attributes$class('form-control'),
 										elm$html$Html$Attributes$type_('text'),
 										elm$html$Html$Attributes$placeholder('Question'),
-										elm$html$Html$Attributes$value(model.D),
+										elm$html$Html$Attributes$value(model.E),
 										elm$html$Html$Attributes$name('question'),
 										elm$html$Html$Events$onInput(author$project$Page$NewVoting$ChangeQuestion)
 									]),
@@ -7151,10 +7151,10 @@ var author$project$Page$NewVoting$view = function (model) {
 };
 var author$project$Page$Voting$CloseVoting = {$: 3};
 var author$project$Session$isCreator = function (session) {
-	return (session.n === 1) ? true : false;
+	return (session.o === 1) ? true : false;
 };
 var author$project$Page$Voting$showClose = function (model) {
-	return (author$project$Session$isCreator(model.E) && (!model.B)) ? _List_fromArray(
+	return (author$project$Session$isCreator(model.F) && (!model.C)) ? _List_fromArray(
 		[
 			A2(
 			elm$html$Html$input,
@@ -7169,7 +7169,7 @@ var author$project$Page$Voting$showClose = function (model) {
 		]) : _List_Nil;
 };
 var author$project$Page$Voting$showRole = function (model) {
-	return model.B ? _List_fromArray(
+	return model.C ? _List_fromArray(
 		[
 			A2(
 			elm$html$Html$div,
@@ -7181,7 +7181,7 @@ var author$project$Page$Voting$showRole = function (model) {
 				[
 					elm$html$Html$text('Voting is closed. Only view mode.')
 				]))
-		]) : (author$project$Session$isCreator(model.E) ? _List_fromArray(
+		]) : (author$project$Session$isCreator(model.F) ? _List_fromArray(
 		[
 			A2(
 			elm$html$Html$div,
@@ -7209,7 +7209,7 @@ var author$project$Page$Voting$showRole = function (model) {
 };
 var author$project$Component$User$ChangeUserName = elm$core$Basics$identity;
 var author$project$Component$User$emptyName = function (model) {
-	return (model.P === '') ? true : false;
+	return (model.Q === '') ? true : false;
 };
 var elm$json$Json$Encode$bool = _Json_wrap;
 var elm$html$Html$Attributes$boolProperty = F2(
@@ -7244,7 +7244,7 @@ var author$project$Component$User$view = function (model) {
 								elm$html$Html$Attributes$class('form-control'),
 								elm$html$Html$Attributes$placeholder('Name'),
 								elm$html$Html$Attributes$type_('text'),
-								elm$html$Html$Attributes$value(model.P),
+								elm$html$Html$Attributes$value(model.Q),
 								elm$html$Html$Events$onInput(elm$core$Basics$identity)
 							]),
 						_List_Nil),
@@ -7266,12 +7266,12 @@ var author$project$Component$User$view = function (model) {
 var elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
 var elm$html$Html$map = elm$virtual_dom$VirtualDom$map;
 var author$project$Page$Voting$showUserWidget = function (model) {
-	return model.B ? _List_Nil : _List_fromArray(
+	return model.C ? _List_Nil : _List_fromArray(
 		[
 			A2(
 			elm$html$Html$map,
 			author$project$Page$Voting$GotToUserMsg,
-			author$project$Component$User$view(model.n))
+			author$project$Component$User$view(model.o))
 		]);
 };
 var author$project$Page$Voting$SubmitVoteVariant = function (a) {
@@ -7279,7 +7279,7 @@ var author$project$Page$Voting$SubmitVoteVariant = function (a) {
 };
 var author$project$Page$Voting$showVoteButton = F2(
 	function (model, variant) {
-		return (model.B || author$project$Component$User$emptyName(model.n)) ? _List_Nil : _List_fromArray(
+		return (model.C || author$project$Component$User$emptyName(model.o)) ? _List_Nil : _List_fromArray(
 			[
 				A2(
 				elm$html$Html$input,
@@ -7302,7 +7302,7 @@ var author$project$Page$Voting$votesCount = F2(
 				function (x) {
 					return _Utils_eq(x.az, variantId);
 				},
-				model.T));
+				model.U));
 	});
 var elm$html$Html$Attributes$readonly = elm$html$Html$Attributes$boolProperty('readOnly');
 var elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
@@ -7310,7 +7310,7 @@ var elm$html$Html$Attributes$style = elm$virtual_dom$VirtualDom$style;
 var author$project$Page$Voting$showVariant = F2(
 	function (model, variant) {
 		var percent = elm$core$String$fromInt(
-			((A2(author$project$Page$Voting$votesCount, model, variant.aM) * 100) / elm$core$List$length(model.T)) | 0);
+			((A2(author$project$Page$Voting$votesCount, model, variant.aM) * 100) / elm$core$List$length(model.U)) | 0);
 		return _List_fromArray(
 			[
 				A2(
@@ -7334,7 +7334,7 @@ var author$project$Page$Voting$showVariant = F2(
 								_List_fromArray(
 									[
 										elm$html$Html$Attributes$readonly(true),
-										elm$html$Html$Attributes$value(variant.H),
+										elm$html$Html$Attributes$value(variant.I),
 										elm$html$Html$Attributes$class('form-control-plaintext')
 									]),
 								_List_Nil)
@@ -7415,7 +7415,7 @@ var author$project$Page$Voting$view = function (model) {
 									]),
 								_List_fromArray(
 									[
-										elm$html$Html$text(model.D)
+										elm$html$Html$text(model.E)
 									]))
 							]))
 					]))
